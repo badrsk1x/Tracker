@@ -22,4 +22,4 @@ security:
                 default_target_path: /profile
 
     encoders:
-            UserBundle\Entity\User: bcrypt
+            UserBundle\Entity\User: bcrypt        

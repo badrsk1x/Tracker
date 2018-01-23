@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        {% if app.session.flashBag.has('success') %}
+            <div class="alert alert-success">
+                {% for msg in app.session.flashBag.get('success') %}
+                    {{ msg }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <h2>Uploading bulk records</h2>
+        <p>Upload your csv file.</p>
+        <p>
+            Your CSV file must look like above :
+            "project name,"2018-01-23 10:04:16","login"
+            "project name,"2018-01-23 14:04:16","logout"
+        </p>
+        {{ form_start(form) }}
+
+            {{ form_widget(form) }}
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

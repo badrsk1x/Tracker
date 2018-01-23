@@ -22,6 +22,24 @@ services:
         # but if a service is unused, it's removed anyway
         exclude: '../../src/AppBundle/{Entity,Repository,Tests}'
 
+    ProjectBundle\:
+        resource: '../../src/ProjectBundle/*'
+        # you can exclude directories or files
+        # but if a service is unused, it's removed anyway
+        exclude: '../../src/ProjectBundle/{Entity,Repository,Tests}'  
+
+    TrackerBundle\:
+        resource: '../../src/TrackerBundle/*'
+        # you can exclude directories or files
+        # but if a service is unused, it's removed anyway
+        exclude: '../../src/TrackerBundle/{Entity,Repository,Tests}' 
+
+    UserBundle\:
+        resource: '../../src/UserBundle/*'
+        # you can exclude directories or files
+        # but if a service is unused, it's removed anyway
+        exclude: '../../src/UserBundle/{Entity,Repository,Tests}'            
+
     # controllers are imported separately to make sure they're public
     # and have a tag that allows actions to type-hint services
     AppBundle\Controller\:
@@ -29,16 +47,18 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
-    UserBundle\:
-        resource: '../../src/UserBundle/*'
-        # you can exclude directories or files
-        # but if a service is unused, it's removed anyway
-        exclude: '../../src/UserBundle/{Entity,Repository,Tests}'  
+    ProjectBundle\Controller\:
+        class: ProjectBundle\Controller\ProjectController
+        arguments: ['@doctrine.orm.entity_manager']
 
     UserBundle\Controller\:
         class: UserBundle\Controller\UserController
-        arguments: ['@doctrine.orm.entity_manager']    
+        arguments: ['@doctrine.orm.entity_manager']  
 
+    TrackerBundle\Controller\:
+        class: TrackerBundle\Controller\TrackerController
+        arguments: ['@doctrine.orm.entity_manager']        
+        
     app.login.listener:
         class: UserBundle\EventListener\LoginListener
         arguments:
@@ -53,4 +73,9 @@ services:
     app.logout.listener:
         class: UserBundle\EventListener\LogoutListener
         arguments: [ "@doctrine.orm.entity_manager"]
-        userManager: "@fos_user.user_manager"         
+        userManager: "@fos_user.user_manager"        
+
+    # add more services, or override services that need manual wiring
+    # AppBundle\Service\ExampleService:
+    #     arguments:
+    #         $someArgument: 'some_value'

@@ -1,8 +1,8 @@
-project:
-    resource: "@ProjectBundle/Controller/"
+tracker:
+    resource: "@TrackerBundle/Controller/"
     type:     annotation
     prefix:   /
-
+    
 user:
     resource: "@UserBundle/Controller/"
     type:     annotation
@@ -11,6 +11,36 @@ user:
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
-
+    
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+project:
+    resource: "@ProjectBundle/Controller/"
+    type:     annotation
+    prefix:   /projects
+    methods: [GET]
+
+project_info:
+    path:  /projects/{id}
+    defaults: { _controller: ProjectBundle:Project:get }
+
+peak_time_home:
+    path: /peaktime
+    defaults: { _controller: ProjectBundle:Project:peaktimepage}
+    methods: [GET]
+
+peak_time:
+    path: /peaktime
+    defaults: { _controller: ProjectBundle:Project:peaktime }
+    methods: [POST]
+
+bulk_records_home:
+    path: /sendcsv
+    defaults: { _controller: TrackerBundle:Tracker:new}
+    methods: [GET]
+
+bulk_records_upload:
+    path: /sendcsv
+    defaults: { _controller: TrackerBundle:Tracker:new}
+    methods: [POST]
