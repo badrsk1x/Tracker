@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+    <h2>Billable hours</h2>
+    <p>Choose a project to view the number of hours that were tracked on it.</p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Project Id</th>
+            <th>Project Name</th>
+        </tr>
+        </thead>
+        <tbody>
+    {% for project in projects %}
+        <tr>
+            <td>{{ project.id }}</td>
+            <td><a href="/projects/{{ project.id }}">{{ project.name }}</a></td>
+        </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

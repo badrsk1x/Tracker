@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <h2>Project : {{ project.name }}</h2>
+        <p>Numbers of hours tracked in the project : <span style="color:red">{{ SpentTime }}</span></p>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Start</th>
+                <th>End</th>
+                <th>User</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for result in results %}
+                <tr>
+                    <td>{{ result.start }}</td>
+                    <td>{{ result.end }}</td>
+                    <td>{{ result.user_name }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

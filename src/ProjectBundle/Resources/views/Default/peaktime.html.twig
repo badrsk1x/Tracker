@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <div>Project : {{ project}}</div>
+        <div>Day : {{ day }}</div>
+        <div>time period in which most people were working : </div>
+        <div>From : {{ results.peak_start }} To : {{ results.peak_end }}</div>
+
+    </div>
+{% endblock %}
