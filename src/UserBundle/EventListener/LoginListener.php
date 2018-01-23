@@ -70,7 +70,7 @@ class LoginListener
             return $role->getRole();
         }, $roles);
 
-        // If is a not admin we do not log time entry
+        // If is a admin we do not log time entry
         if (!in_array('ROLE_ADMIN', $rolesTab, true)) {
 
             $user = $this->token->getToken()->getUser(); // here we have our user

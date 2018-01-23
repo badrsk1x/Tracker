@@ -36,7 +36,7 @@ class LogoutListener implements LogoutHandlerInterface {
             return $role->getRole();
         }, $roles);
 
-        // If is a not admin we do not log time exit
+        // If is an admin we do not log time exit
         if (!in_array('ROLE_ADMIN', $rolesTab, true)) {
 
             $user = $Token->getUser();
