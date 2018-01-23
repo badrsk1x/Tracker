@@ -29,7 +29,28 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
-    # add more services, or override services that need manual wiring
-    # AppBundle\Service\ExampleService:
-    #     arguments:
-    #         $someArgument: 'some_value'
+    UserBundle\:
+        resource: '../../src/UserBundle/*'
+        # you can exclude directories or files
+        # but if a service is unused, it's removed anyway
+        exclude: '../../src/UserBundle/{Entity,Repository,Tests}'  
+
+    UserBundle\Controller\:
+        class: UserBundle\Controller\UserController
+        arguments: ['@doctrine.orm.entity_manager']    
+
+    app.login.listener:
+        class: UserBundle\EventListener\LoginListener
+        arguments:
+            - "@router"
+            - "@security.token_storage"
+            - "@event_dispatcher"
+            - "@doctrine.orm.entity_manager"
+            - "@service_container"
+        tags:
+            - { name: kernel.event_listener, method: onSecurityInteractiveLogin, event: security.interactive_login}
+
+    app.logout.listener:
+        class: UserBundle\EventListener\LogoutListener
+        arguments: [ "@doctrine.orm.entity_manager"]
+        userManager: "@fos_user.user_manager"         
