@@ -24,6 +24,8 @@ project:
 project_info:
     path:  /projects/{id}
     defaults: { _controller: ProjectBundle:Project:get }
+    requirements:
+        id: \d+
 
 peak_time_home:
     path: /peaktime

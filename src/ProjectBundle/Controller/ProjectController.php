@@ -47,9 +47,23 @@ user_id='.$this->getUser()->getId()  ;
      */
     public function getAction($id) {
 
+        // if project id is not number show warning message
+        if(!is_numeric($id)):
+            $this->addFlash("warning", "This is a warning message : You have did sthg wrong");
+            return $this->indexAction() ;
+         endif ;
+
+
         $em = $this->getDoctrine()->getManager();
         $project = $em->getRepository(Project::class)
                    ->findOneBy(['id' => $id]) ;
+
+        // if project id do not exist
+
+        if($project==null):
+            $this->addFlash("warning", "This is a warning message : This project do not exist");
+            return $this->indexAction() ;
+        endif ;
 
         $userManager = $this->get('fos_user.user_manager');
 

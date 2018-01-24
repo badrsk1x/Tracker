@@ -5,6 +5,15 @@
 <div class="container">
     <h2>Billable hours</h2>
     <p>Choose a project to view the number of hours that were tracked on it.</p>
+
+    {% for label, flashes in app.session.flashbag.all %}
+        {% for flash in flashes %}
+            <div class="alert alert-{{ label }}">
+                {{ flash }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
     <table class="table">
         <thead>
         <tr>
