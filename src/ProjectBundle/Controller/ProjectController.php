@@ -21,8 +21,20 @@ class ProjectController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $projects = $em->getRepository(Project::class)
-                       ->findAll();
+        $projects = $em->getRepository(Project::class);
+        if ( $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            $projects = $projects->findAll();
+        } else{
+            $RAW_QUERY = 'SELECT distinct(project_id), b.id, b.name from `time_tracker` a left join project b on a.project_id=b.id where  
+user_id='.$this->getUser()->getId()  ;
+
+
+            $statement = $em->getConnection()->prepare($RAW_QUERY);
+            $statement->execute();
+
+            $projects = $statement->fetchAll();
+        }
+
 
         return $this->render('ProjectBundle:Default:index.html.twig', ['projects' => $projects]);
 
