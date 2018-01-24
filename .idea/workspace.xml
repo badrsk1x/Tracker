@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a29ad0d3-7069-408b-bfc4-d6969805611e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ProjectBundle/Controller/ProjectController.php" afterPath="$PROJECT_DIR$/src/ProjectBundle/Controller/ProjectController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserBundle/Entity/User.php" afterPath="$PROJECT_DIR$/src/UserBundle/Entity/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserBundle/Resources/views/Default/index.html.twig" afterPath="$PROJECT_DIR$/src/UserBundle/Resources/views/Default/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/styles.css" afterPath="$PROJECT_DIR$/web/css/styles.css" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,16 +14,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/default/index.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
@@ -61,16 +47,27 @@
       <file leaf-file-name="ProjectController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ProjectBundle/Controller/ProjectController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+            <state relative-caret-position="226">
+              <caret line="57" column="14" lean-forward="false" selection-start-line="57" selection-start-column="14" selection-end-line="57" selection-end-column="14" />
               <folding>
-                <marker date="1516827647467" expanded="true" signature="840:847" ph="SELECT a.pro... " />
-                <marker date="1516827647467" expanded="true" signature="840:867" ph="SELECT * fro... " />
-                <marker date="1516827647467" expanded="true" signature="840:961" ph="SELECT * fro... project" />
-                <marker date="1516827647467" expanded="true" signature="1556:1914" ph="SELECT a.pro... " />
-                <marker date="1516827647467" expanded="true" signature="3310:3767" ph="select MAX(s... time" />
-                <marker date="1516827647467" expanded="true" signature="3370:3692" ph="SELECT a.tim... " />
+                <marker date="1516828802981" expanded="true" signature="840:847" ph="SELECT a.pro... " />
+                <marker date="1516828802981" expanded="true" signature="840:867" ph="SELECT * fro... " />
+                <marker date="1516828802981" expanded="true" signature="840:961" ph="SELECT * fro... project" />
+                <marker date="1516828802981" expanded="true" signature="1813:2174" ph="SELECT a.pro... " />
+                <marker date="1516828802981" expanded="true" signature="1813:2196" ph="SELECT a.pro... " />
+                <marker date="1516828802981" expanded="true" signature="3527:3984" ph="select MAX(s... time" />
+                <marker date="1516828802981" expanded="true" signature="3587:3909" ph="SELECT a.tim... " />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Projects.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ProjectBundle/DataFixtures/Projects.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -161,7 +158,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1399" />
+    <option name="x" value="33" />
+    <option name="y" value="768" />
     <option name="width" value="1333" />
     <option name="height" value="768" />
   </component>
@@ -248,6 +246,25 @@
               <item name="tracker" type="b2602c69:ProjectViewProjectNode" />
               <item name="tracker" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="tracker" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tracker" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="ProjectBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="tracker" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tracker" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="ProjectBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="DataFixtures" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="tracker" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tracker" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="TrackerBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="tracker" type="b2602c69:ProjectViewProjectNode" />
@@ -346,15 +363,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1516819245435</updated>
-      <workItem from="1516819259838" duration="7274000" />
+      <workItem from="1516819259838" duration="8389000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7274000" />
+    <option name="totallyTimeSpent" value="8389000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1399" y="0" width="1333" height="768" extended-state="6" />
+    <frame x="33" y="768" width="1333" height="768" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24981245" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
@@ -515,17 +532,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ProjectBundle/DataFixtures/Projects.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ProjectBundle/Controller/ProjectController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+        <state relative-caret-position="226">
+          <caret line="57" column="14" lean-forward="false" selection-start-line="57" selection-start-column="14" selection-end-line="57" selection-end-column="14" />
           <folding>
-            <marker date="1516827647467" expanded="true" signature="840:847" ph="SELECT a.pro... " />
-            <marker date="1516827647467" expanded="true" signature="840:867" ph="SELECT * fro... " />
-            <marker date="1516827647467" expanded="true" signature="840:961" ph="SELECT * fro... project" />
-            <marker date="1516827647467" expanded="true" signature="1556:1914" ph="SELECT a.pro... " />
-            <marker date="1516827647467" expanded="true" signature="3310:3767" ph="select MAX(s... time" />
-            <marker date="1516827647467" expanded="true" signature="3370:3692" ph="SELECT a.tim... " />
+            <marker date="1516828802981" expanded="true" signature="840:847" ph="SELECT a.pro... " />
+            <marker date="1516828802981" expanded="true" signature="840:867" ph="SELECT * fro... " />
+            <marker date="1516828802981" expanded="true" signature="840:961" ph="SELECT * fro... project" />
+            <marker date="1516828802981" expanded="true" signature="1813:2174" ph="SELECT a.pro... " />
+            <marker date="1516828802981" expanded="true" signature="1813:2196" ph="SELECT a.pro... " />
+            <marker date="1516828802981" expanded="true" signature="3527:3984" ph="select MAX(s... time" />
+            <marker date="1516828802981" expanded="true" signature="3587:3909" ph="SELECT a.tim... " />
           </folding>
         </state>
       </provider>

@@ -51,15 +51,25 @@ user_id='.$this->getUser()->getId()  ;
         $project = $em->getRepository(Project::class)
                    ->findOneBy(['id' => $id]) ;
 
+        $userManager = $this->get('fos_user.user_manager');
+
+        $admin_view = null ;
+
+        if ( !$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+         $admin_view = 'and a.user_id='.$this->getUser()->getId() ;
+        }
+
         $RAW_QUERY = 'SELECT a.project_id , a.user_id, a.id , a.time as start , b.time as end , b.id FROM `time_tracker` a inner join 
-`time_tracker` b on a.user_id=b.user_id where a.action=\'login\' and b.action=\'logout\'  and b.id=( select c.id from time_tracker c where c.user_id = a.user_id and c.id > a.id and c.action=\'logout\' order by c.id asc limit 1) and a.project_id='.$project->getId()  ;
+`time_tracker` b on a.user_id=b.user_id where a.action=\'login\' and b.action=\'logout\'  and b.id=( select c.id from
+ time_tracker c where c.user_id = a.user_id and c.id > a.id and c.action=\'logout\' order by c.id asc limit 1) and a
+ .project_id='.$project->getId().' '.$admin_view  ;
 
         $statement = $em->getConnection()->prepare($RAW_QUERY);
         $statement->execute();
 
         $result = $statement->fetchAll();
 
-        $userManager = $this->get('fos_user.user_manager');
+
 
         $spent_time = 0 ;
 
