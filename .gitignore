@@ -15,6 +15,7 @@
 !var/logs/.gitkeep
 !var/sessions/.gitkeep
 /vendor/
+.idea/workspace.xml
 
 # Parameters
 /app/config/parameters.yml

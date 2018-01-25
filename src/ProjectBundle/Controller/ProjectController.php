@@ -126,6 +126,11 @@ user_id='.$this->getUser()->getId()  ;
         $project = $request->get('project');
         $day     = $request->get('day');
 
+        if($project==null or $day==null):
+            $this->addFlash("warning", "This is a warning message : You did not choose a project or day");
+            return $this->peaktimepageAction() ;
+        endif ;
+
         $em = $this->getDoctrine()->getManager();
 
         $RAW_QUERY = "select MAX(start) as peak_start, MIN(end) as peak_end from (SELECT a.time as start , b.time as end , b.id FROM 
