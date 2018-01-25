@@ -42,7 +42,7 @@ class LogoutListener implements LogoutHandlerInterface {
             $user = $Token->getUser();
             $em = $this->em;
 
-            $project = $this->em->getRepository("UserBundle:User")->findOneBy(array('id' => $user))->getProject();
+            $project = $this->em->getRepository(User::class)->findOneBy(array('id' => $user))->getProject();
 
 
             $tracker = new Tracker();

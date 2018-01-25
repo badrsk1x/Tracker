@@ -80,7 +80,7 @@ class TrackerController extends Controller
 
                 $user = $this->getUser();  // here we have our user
 
-                $project = $em->getRepository("UserBundle:User")->findOneBy(array('id' => $user))->getProject();
+                $project = $em->getRepository(User::class)->findOneBy(array('id' => $user))->getProject();
 
 
                 $tracker = new Tracker();

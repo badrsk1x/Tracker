@@ -75,7 +75,7 @@ class LoginListener
 
             $user = $this->token->getToken()->getUser(); // here we have our user
 
-            $project = $this->em->getRepository("UserBundle:User")->findOneBy(array('id' => $user))->getProject();
+            $project = $this->em->getRepository(User::class)->findOneBy(array('id' => $user))->getProject();
 
 
             $tracker = new Tracker();
