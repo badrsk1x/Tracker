@@ -22,17 +22,14 @@ class ProjectController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $projects = $em->getRepository(Project::class);
-        if ( $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+
+        if ( $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN') ){
+
             $projects = $projects->findAll();
+
         } else{
-            $RAW_QUERY = 'SELECT distinct(project_id), b.id, b.name from `time_tracker` a left join project b on a.project_id=b.id where  
-user_id='.$this->getUser()->getId()  ;
 
-
-            $statement = $em->getConnection()->prepare($RAW_QUERY);
-            $statement->execute();
-
-            $projects = $statement->fetchAll();
+            $projects = $projects->findProjectsByUser($this->getUser()->getId());
         }
 
 
@@ -67,23 +64,11 @@ user_id='.$this->getUser()->getId()  ;
 
         $userManager = $this->get('fos_user.user_manager');
 
-        $admin_view = null ;
+        $admin_view = $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN') ;
 
-        if ( !$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-         $admin_view = 'and a.user_id='.$this->getUser()->getId() ;
-        }
+        $projects = $em->getRepository(Project::class);
 
-        $RAW_QUERY = 'SELECT a.project_id , a.user_id, a.id , a.time as start , b.time as end , b.id FROM `time_tracker` a inner join 
-`time_tracker` b on a.user_id=b.user_id where a.action=\'login\' and b.action=\'logout\'  and b.id=( select c.id from
- time_tracker c where c.user_id = a.user_id and c.id > a.id and c.action=\'logout\' order by c.id asc limit 1) and a
- .project_id='.$project->getId().' '.$admin_view  ;
-
-        $statement = $em->getConnection()->prepare($RAW_QUERY);
-        $statement->execute();
-
-        $result = $statement->fetchAll();
-
-
+        $result = $projects->bulkRecords($project->getId(), $this->getUser()->getId(), $admin_view);
 
         $spent_time = 0 ;
 
@@ -132,17 +117,7 @@ user_id='.$this->getUser()->getId()  ;
         endif ;
 
         $em = $this->getDoctrine()->getManager();
-
-        $RAW_QUERY = "select MAX(start) as peak_start, MIN(end) as peak_end from (SELECT a.time as start , b.time as end , b.id FROM 
-`time_tracker` a inner join 
-`time_tracker` b on a.user_id=b.user_id where a.action='login' and b.action='logout' and b.id=( select c.id from 
-time_tracker c where c.user_id = a.user_id and c.id > a.id and c.action='logout' order by c.id asc limit 1 ) and a
-.project_id=$project ) peaktime where start BETWEEN '$day 00:00:00' AND '$day 23:59:59' "  ;
-
-        $statement = $em->getConnection()->prepare($RAW_QUERY);
-        $statement->execute();
-
-        $result = $statement->fetch();
+        $result = $em->getRepository(Project::class)->peaktime($project, $day);
 
 
         return $this->render('ProjectBundle:Default:peaktime.html.twig',

@@ -34,7 +34,7 @@ class Tracker
      * @var Project
      *
      * @ORM\ManyToOne(targetEntity="ProjectBundle\Entity\Project")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      */
     private $project ;
 

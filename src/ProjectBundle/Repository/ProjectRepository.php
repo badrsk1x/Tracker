@@ -2,6 +2,10 @@
 
 namespace ProjectBundle\Repository;
 
+use Doctrine\ORM\Mapping;
+use TrackerBundle\Entity\Tracker;
+use ProjectBundle\Entity\Project ;
+
 /**
  * ProjectRepository
  *
@@ -10,4 +14,67 @@ namespace ProjectBundle\Repository;
  */
 class ProjectRepository extends \Doctrine\ORM\EntityRepository
 {
+
+
+    public function findProjectsByUser($id)
+    {
+
+        $conn = $this->getEntityManager()->getConnection();
+
+        $RAW_QUERY = 'SELECT distinct(project_id), b.id, b.name 
+                      from time_tracker a 
+                      left join project b 
+                      on a.project_id=b.id 
+                      where user_id= :user';
+
+        $stmt = $conn->prepare($RAW_QUERY);
+        $stmt->execute(["user"=>$id]);
+
+        return $stmt->fetchAll();
+
+    }
+
+    public function bulkRecords($project ,$user, $role = null ){
+
+        $admin_view = null ;
+
+        if(!$role){
+            $admin_view = 'and a.user_id='.$user ;
+        }
+
+        $conn = $this->getEntityManager()->getConnection();
+
+        $RAW_QUERY = 'SELECT a.project_id , a.user_id, a.id , a.time as start , b.time as end , b.id FROM `time_tracker` a inner join 
+`time_tracker` b on a.user_id=b.user_id where a.action=\'login\' and b.action=\'logout\'  and b.id=( select c.id from
+ time_tracker c where c.user_id = a.user_id and c.id > a.id and c.action=\'logout\' order by c.id asc limit 1) and a
+ .project_id= :project '.$admin_view  ;
+
+        $statement = $conn->prepare($RAW_QUERY);
+
+        $statement->execute(['project'=>$project]);
+
+        return $statement->fetchAll();
+    }
+
+    public function peaktime($project, $day){
+
+        $conn = $this->getEntityManager()->getConnection();
+
+        $RAW_QUERY = "select MAX(start) as peak_start, MIN(end) as peak_end from (SELECT a.time as start , b.time as end , b.id FROM 
+`time_tracker` a inner join 
+`time_tracker` b on a.user_id=b.user_id where a.action='login' and b.action='logout' and b.id=( select c.id from 
+time_tracker c where c.user_id = a.user_id and c.id > a.id and c.action='logout' order by c.id asc limit 1 ) and a
+.project_id= $project ) peaktime where start BETWEEN '$day 00:00:00' AND '$day 23:59:59' "  ;
+
+
+        $statement = $conn->prepare($RAW_QUERY);
+
+        $statement->execute([
+            'project'=>$project,
+            'day'    =>$day
+        ]);
+
+        return $statement->fetch();
+
+    }
 }
