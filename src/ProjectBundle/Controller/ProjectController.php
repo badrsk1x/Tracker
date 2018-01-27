@@ -11,9 +11,11 @@ use Symfony\Component\Validator\Constraints\DateTime;
 use Doctrine\ORM\EntityManager;
 
 use ProjectBundle\Entity\Project ;
+use ProjectBundle\Service\SpentTime;
 
 class ProjectController extends Controller
 {
+
     /**
      * @Route("/")
      */
@@ -21,6 +23,7 @@ class ProjectController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+
         $projects = $em->getRepository(Project::class);
 
         if ( $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN') ){
@@ -42,6 +45,7 @@ class ProjectController extends Controller
      * @Method("GET")
      * @param $id
      */
+
     public function getAction($id) {
 
         // if project id is not number show warning message
@@ -70,20 +74,17 @@ class ProjectController extends Controller
 
         $result = $projects->bulkRecords($project->getId(), $this->getUser()->getId(), $admin_view);
 
-        $spent_time = 0 ;
+        $countTime = new SpentTime($em, $userManager);
+
+        $spent_time = $countTime->CountTime($result);
+
 
         foreach($result as $key=>$res) {
 
             $user = $userManager->findUserBy(array('id' => $res['user_id'] ));
-
             $result[$key]['user_name'] = $user->getUsername() ;
 
-            $d1= new \DateTime($res['start']);
-            $d2= new \DateTime($res['end']);
-            $spent_time += $d2->getTimestamp()-$d1->getTimestamp();
-
         }
-
 
         return $this->render('ProjectBundle:Default:project_view.html.twig',
             [

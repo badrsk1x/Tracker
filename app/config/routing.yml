@@ -19,7 +19,7 @@ project:
 
 project_info:
     path:  /projects/{id}
-    defaults: { _controller: ProjectBundle:Project:get }
+    defaults: { _controller: ProjectBundle:Project:getAction }
     requirements:
         id: \d+
 

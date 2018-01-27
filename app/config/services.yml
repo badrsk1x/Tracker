@@ -33,21 +33,22 @@ services:
         resource: '../../src/UserBundle/*'
         # you can exclude directories or files
         # but if a service is unused, it's removed anyway
-        exclude: '../../src/UserBundle/{Entity,Repository,Tests}'            
+        exclude: '../../src/UserBundle/{Entity,Repository,Tests}'
 
     # controllers are imported separately to make sure they're public
     # and have a tag that allows actions to type-hint services
     ProjectBundle\Controller\:
         class: ProjectBundle\Controller\ProjectController
+        public: true
         arguments: ['@doctrine.orm.entity_manager']
 
     UserBundle\Controller\:
         class: UserBundle\Controller\UserController
-        arguments: ['@doctrine.orm.entity_manager']  
+        arguments: ['@doctrine.orm.entity_manager']
 
     TrackerBundle\Controller\:
         class: TrackerBundle\Controller\TrackerController
-        arguments: ['@doctrine.orm.entity_manager']        
+        arguments: ['@doctrine.orm.entity_manager']
         
     app.login.listener:
         class: UserBundle\EventListener\LoginListener
@@ -63,7 +64,11 @@ services:
     app.logout.listener:
         class: UserBundle\EventListener\LogoutListener
         arguments: [ "@doctrine.orm.entity_manager"]
-        userManager: "@fos_user.user_manager"        
+        userManager: "@fos_user.user_manager"
+
+    ProjectBundle.service:
+        class: ProjectBundle\Service\SpentTime
+        arguments: ["@doctrine.orm.default_entity_manager"]
 
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
