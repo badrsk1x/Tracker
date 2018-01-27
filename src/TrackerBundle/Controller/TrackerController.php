@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 use TrackerBundle\Entity\Tracker;
 use UserBundle\Entity\UserFile;
+use UserBundle\Entity\User;
 use TrackerBundle\Form\TrackerType;
 
 class TrackerController extends Controller

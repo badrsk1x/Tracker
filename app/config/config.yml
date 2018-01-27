@@ -79,3 +79,11 @@ fos_user:
     from_email:
         address: "badrsk1x@gmail.com"
         sender_name: "Badr Sk1x"
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+            devis:
+                uri_prefix: /uploads/
+                upload_destination: '%kernel.root_dir%/../web/uploads/'
+                namer: vich_uploader.namer_uniqid
