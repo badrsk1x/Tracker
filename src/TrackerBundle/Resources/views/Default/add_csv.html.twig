@@ -3,13 +3,7 @@
 {% block body %}
 
     <div class="container">
-        {% if app.session.flashBag.has('success') %}
-            <div class="alert alert-success">
-                {% for msg in app.session.flashBag.get('success') %}
-                    {{ msg }}
-                {% endfor %}
-            </div>
-        {% endif %}
+
 
         <h2>Uploading bulk records</h2>
         <p>Upload your csv file.</p>

@@ -3,13 +3,7 @@
 {% block body %}
 
     <div class="container">
-        {% for label, flashes in app.session.flashbag.all %}
-            {% for flash in flashes %}
-                <div class="alert alert-{{ label }}">
-                    {{ flash }}
-                </div>
-            {% endfor %}
-        {% endfor %}
+
         <p>choose a project and enter a date to view the time period in which most people were working on the given project.:
         <div class="container">
         <div class="row">

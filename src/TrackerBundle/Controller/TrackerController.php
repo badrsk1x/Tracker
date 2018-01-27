@@ -48,7 +48,7 @@ class TrackerController extends Controller
 
 
 
-            $trackers = array();
+            $trackers = [];
             $row = 0;
 
             // Import  CSV
@@ -90,9 +90,11 @@ class TrackerController extends Controller
                 $tracker->setProject($project);
                 $em->persist($tracker);
 
-                $em->flush();
+
 
             }
+
+            $em->flush();
 
             $request->getSession()
                 ->getFlashBag()
