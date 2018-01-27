@@ -105,6 +105,9 @@ class ProjectController extends Controller
 
     }
 
+    /**
+     * @Route("/peaktime")
+     */
 
     public function peaktimeAction(Request $request){
 

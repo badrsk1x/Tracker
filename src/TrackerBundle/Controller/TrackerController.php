@@ -79,8 +79,6 @@ class TrackerController extends Controller
 
                 $date = \DateTime::createFromFormat('Y-m-d H:i:s',$tracker['Time']);
 
-                $user = $this->getUser();  // here we have our user
-
                 $project = $em->getRepository(User::class)->findOneBy(array('id' => $user))->getProject();
 
 
